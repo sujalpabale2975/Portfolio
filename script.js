@@ -143,21 +143,21 @@ function initArticleModal() {
     const modalBody = document.getElementById('articleModalBody');
     const closeBtn = document.querySelector('.article-modal-close');
     
-    document.querySelectorAll('.article-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const articleId = this.getAttribute('data-article');
-            const article = articleData[articleId];
-            
-            if (article) {
-                modalTitle.textContent = article.title;
-                modalBody.innerHTML = article.content;
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        });
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('.article-link');
+        if (!link) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const articleId = link.getAttribute('data-article');
+        const article = articleData[articleId];
+
+        if (article) {
+            modalTitle.textContent = article.title;
+            modalBody.innerHTML = article.content;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
     });
     
     if (closeBtn) {
