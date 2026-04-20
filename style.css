@@ -809,8 +809,9 @@ section {
 }
 
 .articles-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
 }
 
 .articles-grid .article-card {
